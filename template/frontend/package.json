@@ -1,0 +1,31 @@
+{
+  "name": "{{name}}",
+  "version": "1.0.0",
+  "description": "{{name}}",
+  "author": "Tony Lampada",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "chart.js": "^2.8.0",
+    "nuxt": "^2.10.1",
+    "vue-chartjs": "^3.4.2"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^1.0.1",
+    "@nuxtjs/eslint-module": "^1.1.0",
+    "@nuxtjs/router": "^1.5.0",
+    "@nuxtjs/vuetify": "^1.9.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^5.16.0",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-nuxt": ">=0.4.2"
+  }
+}
