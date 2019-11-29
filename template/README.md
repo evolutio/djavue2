@@ -91,3 +91,54 @@ API_MOCK=0 npm run dev  # Starts nuxt frontend on port 3000
 ```
 
 Since nginx is also running you go ahead and point your browser to http://localhost/ and you should have a fully integrated frontend+backend dev env.
+
+# 2. Deploy to production
+
+Rent a linux machine on a cloud somewhere. Let's say you'll be using ubuntu on AWS.
+Install docker and nginx. Create an empty postgres database {{name}} owned by a user {{name}}.
+
+On your remote machine, create a file ~/{{name}}.env:
+
+```
+DJANGO_DB_PASSWORD=<{{name}}'s password>
+DJANGO_DB_HOST=<database_ip>
+DJANGO_DB_NAME={{name}}
+DJANGO_DB_USER={{name}}
+DJANGO_DEBUG=0
+```
+
+Have a nginx config serving your domain like:
+
+```
+server {
+    server_name  {{name}}.example.com;
+
+    location /api {
+        proxy_pass http://localhost:8000/api;
+    }
+    location /admin {
+        proxy_pass http://localhost:8000/admin;
+    }
+    location /static {
+        alias /home/ubuntu/dkdata/{{name}}/static;
+        add_header Cache-Control public;
+        add_header ETag "";
+    }
+    location / {
+        proxy_pass http://localhost:3000/;
+    }
+
+    listen 80;
+}
+```
+
+(Replace "{{name}}.example.com" with your production domain)
+
+On your development environment, edit the `HOST_PROD` variable on `dev.sh` to make it point to your production domain, then run on terminal:
+
+```
+source dev.sh
+deploy_prod
+```
+
+If it works the first time, go have a beer and take the day off :-)
