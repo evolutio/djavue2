@@ -92,7 +92,7 @@ API_MOCK=0 npm run dev  # Starts nuxt frontend on port 3000
 
 Since nginx is also running you go ahead and point your browser to http://localhost/ and you should have a fully integrated frontend+backend dev env.
 
-# 2. Deploy to production
+# 3. Deploy to production
 
 Rent a linux machine on a cloud somewhere. Let's say you'll be using ubuntu on AWS.
 Install docker and nginx. Create an empty postgres database {{name}} owned by a user {{name}}.
