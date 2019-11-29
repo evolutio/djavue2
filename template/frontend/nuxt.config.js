@@ -49,13 +49,23 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    ['@nuxtjs/pwa', {
+      manifest: {
+        name: 'tecnite',
+        short_name: 'tecnite',
+        lang: 'pt-BR',
+        theme_color: 'blue'
+      },
+      workbox: {
+      }
+    }]
   ],
   buildModules: [
     '@nuxtjs/router'
   ],
   router: {
-    middleware: ['auth']
+    middleware: ['fwdcookies', 'auth']
   },
   /*
   ** Axios module configuration

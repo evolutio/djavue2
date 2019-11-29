@@ -13,10 +13,10 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
     echo "alias l='ls \$LS_OPTIONS -lA'" >>~/.bashrc
 
 RUN cd /tmp && \
-    wget --quiet https://nodejs.org/dist/v9.1.0/node-v9.1.0-linux-x64.tar.xz && \
-    tar xf node-v9.1.0-linux-x64.tar.xz && \
-    cp -r node-v9.1.0-linux-x64/* /usr && \
-    rm node-v9.1.0-linux-x64.tar.xz && \
+    wget --quiet https://nodejs.org/dist/v12.13.1/node-v12.13.1-linux-x64.tar.xz && \
+    tar xf node-v12.13.1-linux-x64.tar.xz && \
+    cp -r node-v12.13.1-linux-x64/* /usr && \
+    rm node-v12.13.1-linux-x64.tar.xz && \
     npm install -g pm2
 
 RUN mkdir /dkdata

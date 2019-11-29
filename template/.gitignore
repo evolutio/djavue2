@@ -1,0 +1,8 @@
+__pycache__
+dkdata
+*.pyc
+.coverage
+coverage.xml
+htmlcov/
+.idea
+/{{name}}.log

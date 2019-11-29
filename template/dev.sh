@@ -125,10 +125,9 @@ function dkrun_prod {
 }
 
 function deploy_prod {
+  rsync -av --exclude frontend/node_modules --exclude frontend/.nuxt * ubuntu@$HOST_PROD:./{{name}}/
   ssh ubuntu@$HOST_PROD "
     cd ~/{{name}}
-    git reset --hard
-    git pull
     source dev.sh
     dkbuild
     dkrun_prod

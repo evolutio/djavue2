@@ -5,6 +5,9 @@ export const state = () => ({
 export const mutations = {
   set (state, newstate) {
     state.snack = newstate
+  },
+  hide (state) {
+    state.snack.visible = false
   }
 }
 

@@ -15,7 +15,7 @@
       v-model="snack.visible"
     >
       {{snack.text}}
-      <v-btn dark flat @click.native="snack.visible = false">Close</v-btn>
+      <v-btn dark text @click.native="closeSnack">Close</v-btn>
     </v-snackbar>
   </v-app>
 </template>
@@ -38,6 +38,11 @@ export default {
   computed: {
     snack () {
       return this.$store.state.snack.snack
+    }
+  },
+  methods: {
+    closeSnack () {
+      this.$store.commit('snack/hide')
     }
   }
 }

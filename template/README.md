@@ -76,7 +76,7 @@ Requirements:
 Step by step:
 
 ```bash
-nvm use 9  # Switch your terminal for node version 9.x
+nvm use 12  # Switch your terminal for node version 9.x
 # no need to npm install anything, we already have our node_modules folder
 sudo chmod -R o+rw .nuxt/  # I'll explain this later
 npm run dev  # Starts nuxt frontend on port 3000
