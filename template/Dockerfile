@@ -1,7 +1,6 @@
-FROM python:3.6
+FROM python:3.6-alpine
 
-RUN apt-get update --fix-missing && \
-    apt-get install -y curl vim nano git locales zip unzip && \
+RUN apk add bash curl vim nano git zip unzip nginx gcc libc-dev linux-headers nodejs npm postgresql-libs musl-dev postgresql-dev && \
     pip install uwsgi uwsgitop
 
 # Replace shell with bash so we can source files
@@ -12,21 +11,14 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh && \
     echo "alias ll='ls \$LS_OPTIONS -l'" >>~/.bashrc && \
     echo "alias l='ls \$LS_OPTIONS -lA'" >>~/.bashrc
 
-RUN cd /tmp && \
-    wget --quiet https://nodejs.org/dist/v12.13.1/node-v12.13.1-linux-x64.tar.xz && \
-    tar xf node-v12.13.1-linux-x64.tar.xz && \
-    cp -r node-v12.13.1-linux-x64/* /usr && \
-    rm node-v12.13.1-linux-x64.tar.xz && \
-    npm install -g pm2
-
 RUN mkdir /dkdata
 WORKDIR /app
 
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
-
 COPY frontend/package.json frontend/package.json
+COPY frontend/package-lock.json frontend/package-lock.json
 RUN cd frontend && npm install
 COPY frontend frontend
 RUN cd frontend && npm run build
@@ -35,3 +27,5 @@ ENV SHELL=/bin/bash PYTHONUNBUFFERED=1 NODE_ENV=production API_MOCK=0 PYTHONIOEN
 
 COPY . /app
 COPY docker/bin/* /usr/bin/
+COPY docker/compose/nginx/default.conf /etc/nginx/sites-enabled/default
+COPY docker/compose/nginx/proxy_params /etc/nginx/proxy_params

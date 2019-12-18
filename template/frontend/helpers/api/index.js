@@ -10,6 +10,9 @@ export default {
   whoami () {
     return get('/api/whoami').then(response => response.data)
   },
+  settings () {
+    return get('/api/settings').then(response => response.data)
+  },
   list_todos () {
     return get('/api/list_todos').then(response => response.data)
   },

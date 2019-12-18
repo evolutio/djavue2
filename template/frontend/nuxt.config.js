@@ -35,6 +35,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    {src: '~/plugins/sentry.js', ssr: false}
   ],
   /*
   ** Nuxt.js dev-modules
@@ -49,6 +50,7 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/sentry',
     '@nuxtjs/axios',
     ['@nuxtjs/pwa', {
       manifest: {
@@ -61,11 +63,15 @@ export default {
       }
     }]
   ],
+  sentry: {
+    dsn: 'https://abcd@sentry.example.com/1',
+    config: {}
+  },
   buildModules: [
     '@nuxtjs/router'
   ],
   router: {
-    middleware: ['fwdcookies', 'auth']
+    middleware: ['fwdcookies', 'settings', 'auth']
   },
   /*
   ** Axios module configuration

@@ -4,7 +4,7 @@ from django.http.response import HttpResponse, JsonResponse
 from django.contrib import auth
 from commons.django_model_utils import get_or_none
 from commons.django_views_utils import ajax_login_required
-from core.service import log_svc, todo_svc
+from core.service import log_svc, todo_svc, globalsettings_svc
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -42,6 +42,10 @@ def whoami(request):
     } if request.user.is_authenticated else {'authenticated': False}
     return JsonResponse(i_am)
 
+
+def settings(request):
+    le_settings = globalsettings_svc.list_settings()
+    return JsonResponse(le_settings)
 
 @ajax_login_required
 def add_todo(request):

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from commons.version import VERSION
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +39,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
 ]
+
+SENTRY_DSN = os.getenv('SENTRY_DSN', '')
+if SENTRY_DSN:
+    INSTALLED_APPS.append('raven.contrib.django.raven_compat')
+    RAVEN_CONFIG = {
+        'dsn': SENTRY_DSN,
+        'release': VERSION,
+        'tags': {
+            'release': VERSION,
+        },
+        'processors': [
+            'raven.processors.SanitizePasswordsProcessor',
+        ],
+    }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

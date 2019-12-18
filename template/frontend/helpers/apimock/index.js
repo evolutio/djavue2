@@ -18,6 +18,12 @@ export default {
     }
     return mockasync(iam).then(response => response.data)
   },
+  settings () {
+    return mockasync({
+      SENTRY_DSN_FRONT: ''
+      // SENTRY_DSN_FRONT: 'https://abcd1234@sentry.example.com/10'
+    }).then(response => response.data)
+  },
   list_todos () {
     return mockasync(todos).then(response => response.data)
   },

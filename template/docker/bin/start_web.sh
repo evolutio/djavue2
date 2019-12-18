@@ -7,4 +7,6 @@ pm2 start npm -i 2 --name=nuxt -l /tmp/nuxt.log -- start
 cd /app
 ./manage.py collectstatic --no-input
 ./manage.py migrate --no-input
+rm -Rf /dkdata/nginx.sock
+service nginx start
 tail -f /dkdata/uwsgi.log
