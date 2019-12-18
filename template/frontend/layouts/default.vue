@@ -37,7 +37,7 @@ export default {
   }),
   computed: {
     snack () {
-      return this.$store.state.snack.snack
+      return JSON.parse(JSON.stringify(this.$store.state.snack.snack))
     }
   },
   methods: {
