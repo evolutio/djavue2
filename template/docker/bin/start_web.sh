@@ -8,5 +8,5 @@ cd /app
 ./manage.py collectstatic --no-input
 ./manage.py migrate --no-input
 rm -Rf /dkdata/nginx.sock
-service nginx start
+nginx
 tail -f /dkdata/uwsgi.log
