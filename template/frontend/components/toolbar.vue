@@ -63,11 +63,10 @@ export default {
       this.$refs.login_dialog.open()
       evt.stopPropagation()
     },
-    logout () {
-      api.logout().then(() => {
-        this.$store.commit('auth/setCurrentUser', null)
-        Snacks.show(this.$store, {text: 'Até logo!'})
-      })
+    async logout () {
+      await api.logout()
+      this.$store.commit('auth/setCurrentUser', null)
+      Snacks.show(this.$store, {text: 'Até logo!'})
     }
   }
 }

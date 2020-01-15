@@ -54,8 +54,8 @@ export default {
     '@nuxtjs/axios',
     ['@nuxtjs/pwa', {
       manifest: {
-        name: 'tecnite',
-        short_name: 'tecnite',
+        name: '{{name}}',
+        short_name: '{{name}}',
         lang: 'pt-BR',
         theme_color: 'blue'
       },

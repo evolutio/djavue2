@@ -39,18 +39,17 @@ export default {
     close () {
       this.visible = false
     },
-    login () {
+    async login () {
       this.loading = true
       this.error = false
-      api.login(this.username, this.password).then(user => {
-        if (user) {
-          this.$store.commit('auth/setCurrentUser', user)
-          this.visible = false
-        } else {
-          this.error = true
-        }
-        this.loading = false
-      })
+      const user = await api.login(this.username, this.password)
+      if (user) {
+        this.$store.commit('auth/setCurrentUser', user)
+        this.visible = false
+      } else {
+        this.error = true
+      }
+      this.loading = false
     }
   }
 }

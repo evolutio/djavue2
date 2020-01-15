@@ -34,22 +34,20 @@ export default {
       ]
     }
   },
-  mounted () {
+  async mounted () {
     this.loading = true
-    api.list_todos().then(response => {
-      const todos = response.todos
-      this.items = todos
-      this.loading = false
-    })
+    const response = await api.list_todos()
+    const todos = response.todos
+    this.items = todos
+    this.loading = false
   },
   methods: {
-    add () {
+    async add () {
       this.adding = true
-      api.add_todo(this.newtask).then(todo => {
-        this.items.push(todo)
-        this.newtask = ''
-        this.adding = false
-      })
+      const response = await api.add_todo(this.newtask)
+      this.items.push(response.todo)
+      this.newtask = ''
+      this.adding = false
     }
   }
 }

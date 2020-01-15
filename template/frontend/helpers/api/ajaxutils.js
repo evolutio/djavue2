@@ -3,15 +3,15 @@ import axios from '~/plugins/axios'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 axios.defaults.xsrfCookieName = 'csrftoken'
 
-export function get (url, params) {
-  return axios.get(url, {params})
+export async function get (url, params) {
+  return (await axios.get(url, {params})).data
 }
 
-export function post (url, params) {
+export async function post (url, params) {
   const fd = new FormData()
   params = params || {}
   Object.keys(params).map((k) => {
     fd.append(k, params[k])
   })
-  return axios.post(url, fd)
+  return (await axios.post(url, fd)).data
 }

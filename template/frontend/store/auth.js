@@ -17,13 +17,12 @@ export const getters = {
 }
 
 export const actions = {
-  whoami ({ commit }) {
-    return api.whoami().then(data => {
-      if (data.authenticated) {
-        commit('setCurrentUser', data.user)
-      } else {
-        commit('setCurrentUser', null)
-      }
-    })
+  async whoami ({ commit }) {
+    const data = await api.whoami()
+    if (data.authenticated) {
+      commit('setCurrentUser', data.user)
+    } else {
+      commit('setCurrentUser', null)
+    }
   }
 }

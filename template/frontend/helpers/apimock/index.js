@@ -6,28 +6,28 @@ const keepLoggedIn = true
 
 export default {
   login (username, password) {
-    return mockasync(zuck).then(response => response.data)
+    return mockasync(zuck)
   },
   logout () {
-    return mockasync({}).then(response => response.data)
+    return mockasync({})
   },
   whoami () {
     const iam = {authenticated: keepLoggedIn}
     if (iam.authenticated) {
       iam.user = zuck
     }
-    return mockasync(iam).then(response => response.data)
+    return mockasync(iam)
   },
   settings () {
     return mockasync({
       SENTRY_DSN_FRONT: ''
       // SENTRY_DSN_FRONT: 'https://abcd1234@sentry.example.com/10'
-    }).then(response => response.data)
+    })
   },
   list_todos () {
-    return mockasync(todos).then(response => response.data)
+    return mockasync(todos)
   },
   add_todo (newtask) {
-    return mockasync({description: newtask, done: false}).then(response => response.data)
+    return mockasync({description: newtask, done: false})
   }
 }

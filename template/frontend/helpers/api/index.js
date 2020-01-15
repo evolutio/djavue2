@@ -2,21 +2,21 @@ import {get, post} from './ajaxutils'
 
 export default {
   login (username, password) {
-    return post('/api/login', {username, password}).then(response => response.data)
+    return post('/api/login', {username, password})
   },
   logout () {
-    return post('/api/logout').then(response => response.data)
+    return post('/api/logout')
   },
   whoami () {
-    return get('/api/whoami').then(response => response.data)
+    return get('/api/whoami')
   },
   settings () {
-    return get('/api/settings').then(response => response.data)
+    return get('/api/settings')
   },
   list_todos () {
-    return get('/api/list_todos').then(response => response.data)
+    return get('/api/list_todos')
   },
   add_todo (newtask) {
-    return post('/api/add_todo', {new_task: newtask}).then(response => response.data)
+    return post('/api/add_todo', {new_task: newtask})
   }
 }

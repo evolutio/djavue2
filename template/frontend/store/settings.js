@@ -11,11 +11,9 @@ export const mutations = {
 }
 
 export const actions = {
-  load ({ commit }) {
-    return api.settings()
-      .then(settings => {
-        commit('setall', settings)
-      })
+  async load ({ commit }) {
+    const settings = await api.settings()
+    commit('setall', settings)
   }
 }
 
