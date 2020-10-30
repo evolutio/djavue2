@@ -61,7 +61,7 @@ With `dkpgnginx` running, start another terminal:
 ```bash
 mkvirtualenv {{name}} -p python3  # creates a python3 virtualenv
 pip install -r requirements.txt  # install python dependencies inside virtualenv
-export DJANGO_DB_PORT=5431  # That's where our dockerized postgres is listening
+export DJANGO_DB_PORT=5432  # That's where our dockerized postgres is listening
 ./manage.py runserver  # starts django on port 8000
 ```
 
