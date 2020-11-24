@@ -45,7 +45,7 @@ export default {
     async add () {
       this.adding = true
       const response = await api.add_todo(this.newtask)
-      this.items.push(response.todo)
+      this.items.push(response)
       this.newtask = ''
       this.adding = false
     }
