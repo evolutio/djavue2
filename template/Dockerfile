@@ -19,7 +19,7 @@ RUN pip install -r requirements.txt
 
 COPY frontend/package.json frontend/package.json
 COPY frontend/package-lock.json frontend/package-lock.json
-RUN cd frontend && npm install && npm install -g pm2
+RUN cd frontend && npm ci && npm install -g pm2
 COPY frontend frontend
 RUN cd frontend && npm run build
 
